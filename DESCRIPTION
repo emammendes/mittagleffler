@@ -1,0 +1,9 @@
+Package: mittagleffler
+Type: Package
+Title: MittagLeffler
+Version: 1.0
+Date: 2015-06-05
+Author: Eduardo Mendes
+Maintainer: Eduardo Mendes <emmendes@cpdee.ufmg.br>
+Description: Implements the Mittag-Leffler functions 
+License: GPL-2
