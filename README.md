@@ -23,6 +23,6 @@ A help file is available.
 
 ## On the fortran code
 
-The fortran code provided in the package is provided by Davide Verotta.  I have simply modified and update to accommodate the free form of Fortran 90, to deal with complex numbers and to be part of R-package.   I thank Davide for allowing me to make the code publicly available.
+The original fortran code is provided by Davide Verotta.  I have simply modified and updated to accommodate the free form of Fortran 90, to deal with complex numbers and to be part of a R-package.   I thank Davide for allowing me to make the code publicly available.
 
 The original fortran code is based on a Matlab function developed by Igor Podlubny and Martin Kacena.
