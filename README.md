@@ -20,3 +20,9 @@ So far the package is only available as source code, so you'll need a functional
         plot(seq(0,5,0.01),res,type="b",xlab="Time",ylab="Amplitude")
 
 A help file is available.
+
+## On the fortran code
+
+The fortran code provided in the package is provided by Davide Verotta.  I have simply modified and update to accommodate the free form of Fortran 90, to deal with complex numbers and to be part of R-package.   I thank Davide for allowing me to make the code publicly available.
+
+The original fortran code is based a Matlab function developed by Igor Podlubny and Martin Kacena
