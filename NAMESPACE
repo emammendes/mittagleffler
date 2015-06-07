@@ -1,4 +1,0 @@
-useDynLib(mittagleffler,.registration = TRUE)
-
-## and the exported functions
-export(mittagleffler)
