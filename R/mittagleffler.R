@@ -18,8 +18,8 @@ mittagleffler <- function (zvector, a, b=1.0, fi=6)
   if (fi < 1) 
     stop('fi is an integer greater than 0.')
     
-  if (fi > 20)
-    stop('fi is a positive integer no greater than 20.')
+  if (fi > 8)
+    stop('fi is a positive integer no greater than 8.')
     
   auxvector=as.vector(zvector)
   leng=length(auxvector)  
