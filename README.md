@@ -14,6 +14,7 @@ So far the package is only available as source code, so you'll need a functional
 
 ## Getting started 
 
+        library(mittagleffler)
         lambda <- -1; alpha <- 0.2; 
         t=(-1)*seq(0,5,0.01)^alpha
         res=mittagleffler(t,alpha)
