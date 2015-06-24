@@ -21,7 +21,8 @@ No previous data is used.
 }
 \value{
 Returns a \code{\link[base]{complex}} object }
-\references{See wikipedia}
+\references{Please see Computation of the Mittag-Leffler function and its derivatives. 
+Fract. Calc. Appl. Anal. 5(2002), 491-518 by  R.Gorenflo,  J.Loutchko, and Yu. Luchko}
 \author{Eduardo M. A. M. Mendes}
 \examples{
 lambda=-1
