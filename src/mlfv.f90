@@ -137,13 +137,17 @@ if (alpha.LE.1) then
   if (aaz<(pi*alpha/2.D0+min(pi,pi*alpha))/2.D0) then 
     newsum=(z**((1.D0-beta)/alpha))*exp(z**(1.D0/alpha))/alpha
     do k=1,floor(fi/log10(abs(z)))
-      newsum=newsum-((z**(-k))/gamma(beta-alpha*k))
+      if (ceiling(beta-alpha*k)/=floor(beta-alpha*k)) then
+         newsum=newsum-((z**(-k))/gamma(beta-alpha*k))
+      end if
     end do
     res=newsum
   else 
     newsum=0d0
     do k=1,floor(fi/log10(abs(z)))
-      newsum=newsum-((z**(-k))/gamma(beta-alpha*k))
+      if (ceiling(beta-alpha*k)/=floor(beta-alpha*k)) then
+         newsum=newsum-((z**(-k))/gamma(beta-alpha*k))
+      end if
     end do
     res=newsum
   end if
