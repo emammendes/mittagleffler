@@ -1,15 +1,16 @@
-subroutine call_mlfv(res,alf,bet,z,fi)
+subroutine call_mlfv(res,resderiv,alf,bet,z,fi)
 ! Wrapping function for the MLFV -- Mittag-Leffler function.
 !
-complex(8), intent(out) :: res
+complex(8), intent(out) :: res,resderiv
 complex(8), intent(in) :: z
 real(8), intent(in) :: alf,bet
 integer, intent(in) :: fi
 
-complex(8) :: mlfv
-external :: mlfv
+complex(8) :: mlfv,mlfvderiv
+external :: mlfv,mlfvderiv
 
 res=mlfv(alf,bet,z,fi)
+resderiv=mlfvderiv(alf,bet,z,fi)
 
 end subroutine call_mlfv
 
@@ -257,4 +258,53 @@ pp=((epsn**(1.d0+(1.d0-beta)/alpha))/(2.d0*pi*alpha))*((exp((epsn**(1/alpha))*co
    &(cos(w)+ic*sin(w))))/(epsn*exp(ic*r)-z)
 !
 end function pp
+! =============================================================================
+complex(8) function mlfvderiv(alpha,beta,z,fi)
+implicit none 
+real(8) :: alpha,beta
+integer :: fi
+complex(8) :: z,newsum, mlfv
+real(8) :: d,w,aux,k1
+integer :: k,k0
+!
+external :: mlfv
+!
+newsum=dcmplx(0d0,0d0)
+w=alpha+beta-3d0/2d0
+d=alpha*alpha-4d0*alpha*beta+6d0*alpha+1
 
+! I had to add the following conditional statement to avoid log(1)
+if (abs(log(abs(z))) < 10d-6) then
+   aux=100000d0
+else
+   aux=abs(log(fi*(1-abs(z)))/log(abs(z)))
+end if
+
+
+if (abs(z) > 0d0 .AND. abs(z) < 1d0) then 
+   if (alpha > 1d0) then
+      k1=abs((2d0-alpha-beta)/(alpha-1))+1
+   else 
+     if (alpha > 0d0 .AND. alpha <= 1d0 .AND. d <= 0d0) then
+        k1=abs((3d0-alpha-beta)/alpha)+1
+     else 
+        k1=max(abs((3d0-alpha-beta)/alpha)+1,abs((1d0-2d0*w*alpha+sqrt(d))/(2d0*alpha*alpha))+1)
+     end if
+   end if
+
+   k0=ceiling(max(k1,aux))
+   
+   do k=0,k0
+     newsum=newsum+((k+1)*z**k)/gamma(alpha+beta+alpha*k)
+   end do
+else if (abs(z)==0d0) then
+   aux=-2d0
+   newsum=gamma(aux)  
+else
+   newsum=(mlfv(alpha,beta-1d0,z,fi)-(beta-1d0)*mlfv(alpha,beta,z,fi))/(alpha*z)
+end if
+
+mlfvderiv=newsum
+
+
+end function mlfvderiv

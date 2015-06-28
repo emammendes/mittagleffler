@@ -34,4 +34,4 @@ t=(-1)*seq(0,5,0.01)^alpha
 res=mittagleffler(t,alpha)
 plot(seq(0,5,0.01),res[,1],type="b",xlab="Time",ylab="Amplitude")
 }
-\keyword{lm,nnet,earth}% at least one, from doc/KEYWORDS
+\keyword{methods}% at least one, from doc/KEYWORDS

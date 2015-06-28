@@ -24,25 +24,29 @@ mittagleffler <- function (zvector, a, b=1.0, fi=6)
   auxvector=as.vector(zvector)
   leng=length(auxvector)  
   resvector=auxvector
+  resderivvector=auxvector
     
   res <- 0
+  resderiv <- 0
   
   for (i in seq(1,leng))
   {
   	out <- .Fortran("call_mlfv", 
                     res = as.complex(res), 
+                    resderiv = as.complex(resderiv),
                     alf = as.numeric(a), 
                     bet = as.numeric(b), 
                     z = as.complex(auxvector[i]),
                     fi = as.integer(fi));
   	resvector[i]=out$res
+  	resderivvector[i]=out$resderiv
   }
   if (is.complex(zvector))
   	{
-  	return(resvector);
+  	return(cbind(resvector,resderivvector));
   	}
   else
   	{
-  	return(Re(resvector))
+  	return(cbind(Re(resvector),Re(resderivvector)))
   	}
 }
